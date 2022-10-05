@@ -31,10 +31,12 @@ fn plot_logistic_map(
     let mut x = a;
     while x <= b {
         res.0.push(x);
-        let y = logistic_map(r, x);
+        let mut y = logistic_map(r, x);
         res.1.push(y - x);
-        res.2.push(y.powf(2.0) - x);
-        res.3.push(y.powf(3.0) - x);
+        y = logistic_map(r, y);
+        res.2.push(y - x);
+        y = logistic_map(r, y);
+        res.3.push(y - x);
         x += delta;
     }
     res
